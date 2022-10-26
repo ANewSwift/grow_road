@@ -1,7 +1,5 @@
 package com.hsl.designpattern.behavior.chainofresponsibility.list;
 
-import designpattern.behavior.chainofresponsibility.linkedlist.Handle;
-
 import java.util.ArrayList;
 import java.util.List;
 

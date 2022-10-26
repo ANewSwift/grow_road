@@ -1,7 +1,7 @@
 package com.hsl.offer;
 
 
-import offer.base.ListNode;
+import com.hsl.offer.base.ListNode;
 
 /**
  * 如果一个链表包含环，找到环的入口节点

@@ -1,6 +1,6 @@
 package com.hsl.offer;
 
-import offer.base.ListNode;
+import com.hsl.offer.base.ListNode;
 
 public class GetKthFromEnd_22 {
 

@@ -21,7 +21,6 @@ public class GetKthFromEnd {
             return null;
         }
         ListNode p1 = head;
-        ListNode p2 = head;
         // 先走k-1步
         for (int i = 0; i < k-1 && p1 != null; i++) {
             p1 = p1.next;
@@ -30,6 +29,7 @@ public class GetKthFromEnd {
         if (p1 == null) {
             return null;
         }
+        ListNode p2 = head;
         while (p1.next != null) {
             p1 = p1.next;
             p2= p2.next;

@@ -1,6 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 剑指 Offer II 022. 链表中环的入口节点

@@ -1,8 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
-
-import javax.sound.midi.Soundbank;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 876. 链表的中间结点

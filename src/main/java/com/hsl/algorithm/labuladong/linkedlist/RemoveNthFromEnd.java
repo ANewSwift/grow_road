@@ -1,8 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
-
-import java.util.List;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 19. 删除链表的倒数第 N 个结点

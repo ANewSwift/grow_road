@@ -1,6 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 83. 删除排序链表中的重复元素

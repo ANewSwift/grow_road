@@ -1,8 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
-
-import java.util.List;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 21. 合并两个有序链表

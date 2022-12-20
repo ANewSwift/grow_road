@@ -1,6 +1,6 @@
 package com.hsl.algorithm.labuladong.linkedlist;
 
-import com.hsl.offer.base.ListNode;
+import com.hsl.algorithm.base.ListNode;
 
 /**
  * 剑指 Offer 22. 链表中倒数第k个节点

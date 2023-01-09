@@ -1,4 +1,4 @@
-package com.hsl.algorithm.labuladong;
+package com.hsl.algorithm.labuladong.backtrack;
 
 import java.util.LinkedList;
 import java.util.List;

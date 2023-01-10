@@ -1,4 +1,4 @@
-package com.hsl.algorithm.labuladong.backtrack;
+package com.hsl.algorithm.labuladong.backtrack.permutation;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,10 +19,10 @@ import java.util.List;
  * 输入：nums = [1]
  * 输出：[[1]]
  */
-public class Permute {
+public class AllPermute {
 
     public static void main(String[] args) {
-        Permute main = new Permute();
+        AllPermute main = new AllPermute();
         List<List<Integer>> permute = main.permute(new int[]{1, 2, 3});
         System.out.println(permute);
     }

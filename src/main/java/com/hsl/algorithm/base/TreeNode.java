@@ -1,6 +1,8 @@
 package com.hsl.algorithm.base;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+
 public class TreeNode {
     public String val;
     public TreeNode left;
@@ -21,6 +23,37 @@ public class TreeNode {
 //        String[] postNodes = "A,C,E,D,B,H,I,G,F".split(",");
         TreeNode rootNode = buildTreeWithPreMidOrder(preNodes, midNodes);
         postRetrieval(rootNode);
+    }
+
+    public static void main(String[] args) {
+//        TreeNode root = TreeNode.buildTree(new String[]{"3", "9", "20", null, null, "15", "7"});
+        TreeNode root = TreeNode.buildTree(new String[]{"2", null, "3", null, "4", null, "5", null, "6"});
+        TreeNode.preRetrieval(root);
+    }
+
+    /**
+     * 完全二叉树数组，重建树
+     */
+    public static TreeNode buildTree(String[] nodes) {
+        if (nodes == null) {
+            return null;
+        }
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        TreeNode root = new TreeNode(nodes[0]);
+        queue.offer(root);
+        int idx = 0;
+        while (idx+2 < nodes.length) {
+            TreeNode node = queue.poll();
+            if (nodes[++idx] != null) {
+                node.left = new TreeNode(nodes[idx]);
+                queue.offer(node.left);
+            }
+            if (nodes[++idx] != null) {
+                node.right = new TreeNode(nodes[idx]);
+                queue.offer(node.right);
+            }
+        }
+        return root;
     }
 
     public static TreeNode buildTreeWithPreMidOrder(String[] preOrderNodes, String[] midOrderNodes) throws Exception {

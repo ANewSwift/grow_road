@@ -19,9 +19,60 @@ public class SearchRange {
         int[] ints = main.searchRange(new int[]{5,7,7,8,8,10} , 6);
         System.out.println(ints[0] == -1);
         System.out.println(ints[1] == -1);
+
+//        int rightBound = main.rightBound(new int[]{5,7,7,8,8,10} , 10);
+//        System.out.println(rightBound == 5);
+    }
+    public int[] searchRange(int[] nums, int target) {
+        return new int[]{this.leftBound(nums, target), this.rightBound(nums, target)};
     }
 
-    public int[] searchRange(int[] nums, int target) {
+
+    private int leftBound(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (target > nums[mid]) {
+                left = mid + 1;
+            } else if (target < nums[mid]) {
+                right = mid - 1;
+            } else if (target == nums[mid]) {
+                right = mid - 1;
+            }
+        }
+        if (left == nums.length) {
+            return -1;
+        }
+        return nums[left] == target ? left : -1;
+    }
+
+    private int rightBound(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length -1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (target > nums[mid]) {
+                left = mid + 1;
+            } else if (target < nums[mid]) {
+                right = mid - 1;
+            } else if (target == nums[mid]) {
+                left = mid + 1;
+            }
+        }
+        if (left - 1 < 0) {
+            return -1;
+        }
+        return nums[left-1] == target ? left-1 : -1;
+    }
+
+    public int[] searchRange2(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return new int[]{-1,-1};
         }

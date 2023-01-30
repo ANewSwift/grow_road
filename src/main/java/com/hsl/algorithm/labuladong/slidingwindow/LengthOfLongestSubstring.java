@@ -1,6 +1,8 @@
 package com.hsl.algorithm.labuladong.slidingwindow;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -27,34 +29,78 @@ public class LengthOfLongestSubstring {
 
     public static void main(String[] args) {
         LengthOfLongestSubstring main = new LengthOfLongestSubstring();
-//        int maxLen = main.lengthOfLongestSubstring_n("abcabcbb");
+        int maxLen = main.lengthOfLongestSubstring2("abcabcbb");
+        System.out.println(maxLen == 3);
+//        int maxLen = main.lengthOfLongestSubstring("bbbbb");
+//        System.out.println(maxLen == 1);
+//        int maxLen = main.lengthOfLongestSubstring("pwwkew");
 //        System.out.println(maxLen == 3);
-        int maxLen = main.lengthOfLongestSubstring_n("bbbbb");
-        System.out.println(maxLen == 1);
-//        int maxLen = main.lengthOfLongestSubstring_n("pwwkew");
-//        System.out.println(maxLen == 3);
+//        int maxLen = main.lengthOfLongestSubstring(" ");
+//        System.out.println(maxLen == 1);
+    }
+
+    public int lengthOfLongestSubstring2(String s) {
+        int left = 0, right = 0;
+        int maxLen = 0;
+        Map<Character,Integer> windows = new HashMap<>();
+        while (right < s.length()) {
+            char rightC = s.charAt(right);
+            right++;
+            // 窗口内数据的一系列更新
+            windows.put(rightC,windows.getOrDefault(rightC,0)+1);
+            // 窗口内存在重复元素，则需收缩窗口
+            while (windows.get(rightC) > 1) {
+                char leftC = s.charAt(left);
+                left++;
+                // 窗口内数据的一系列更新
+                windows.computeIfPresent(leftC, (k,v) -> v-1);
+            }
+            maxLen = Math.max(maxLen, right - left);
+        }
+        return maxLen;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        int left = 0, right = 0;
+        int maxLen = 0;
+        Set<Character> set = new HashSet<>();
+        while (right < s.length()) {
+            char rightC = s.charAt(right);
+            right++;
+            if (!set.contains(rightC)) {
+                set.add(rightC);
+            } else {
+                // 收缩窗口
+                while (set.contains(rightC)) {
+                    char leftC = s.charAt(left);
+                    set.remove(leftC);
+                    left++;
+                }
+                set.add(rightC);
+            }
+            maxLen = Math.max(maxLen, right - left);
+        }
+        return maxLen;
     }
 
     /**
      * 滑动窗口解法
      */
     public int lengthOfLongestSubstring_n(String s) {
-        int maxLen = 1;
-        int len = 1;
-        int left = 0;
-        int right = 0;
-        while (++right < s.length()) {
-            len++;
-            for (int i = left; i < right; i++) {
-                if (s.charAt(right) == s.charAt(i)) {
-                    len = len - (i - left) - 1;
+        int maxLen = 0;
+        int left = 0, right = 0;
+        while (right < s.length()) {
+            char rightC = s.charAt(right);
+            right++;
+            // 判断收缩窗口
+            for (int i = left; i < right-1; i++) {
+                if (rightC == s.charAt(i)) {
                     left = i+1;
                     break;
                 }
             }
-            if (len > maxLen) {
-                maxLen = len;
-            }
+            // 更新结果
+            maxLen = Math.max(maxLen,right-left);
         }
         return maxLen;
     }

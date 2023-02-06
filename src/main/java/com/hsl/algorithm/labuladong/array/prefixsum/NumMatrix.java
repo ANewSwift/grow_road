@@ -1,4 +1,4 @@
-package com.hsl.algorithm.labuladong.array;
+package com.hsl.algorithm.labuladong.array.prefixsum;
 
 /**
  * 304. 二维区域和检索 - 矩阵不可变

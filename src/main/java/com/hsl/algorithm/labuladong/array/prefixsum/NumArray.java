@@ -1,4 +1,4 @@
-package com.hsl.algorithm.labuladong.array;
+package com.hsl.algorithm.labuladong.array.prefixsum;
 
 /**
  * 303. 区域和检索 - 数组不可变

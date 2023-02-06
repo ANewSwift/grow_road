@@ -1,4 +1,4 @@
-package com.hsl.algorithm.labuladong.array;
+package com.hsl.algorithm.labuladong.array.doublepointer;
 
 /**
  * 27. 移除元素

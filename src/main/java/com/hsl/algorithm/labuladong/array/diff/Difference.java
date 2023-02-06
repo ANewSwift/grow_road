@@ -5,7 +5,7 @@ package com.hsl.algorithm.labuladong.array.diff;
  */
 public class Difference {
     private final int[] diff;
-    Difference(int[] nums) {
+    public Difference(int[] nums) {
         diff = new int[nums.length];
         diff[0] = nums[0];
         for (int i = 1; i < nums.length; i++) {

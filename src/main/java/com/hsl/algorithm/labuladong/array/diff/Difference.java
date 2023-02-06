@@ -13,15 +13,11 @@ public class Difference {
         }
     }
 
-    public void inc(int[][] updates) {
-        for (int i = 0; i < updates.length; i++) {
-            int f = updates[i][0] - 1;
-            int t = updates[i][1] - 1;
-            int v = updates[i][2];
-            diff[f] += v;
-            if (t+1 < diff.length) {
-                diff[t+1] -= v;
-            }
+    /* 给闭区间 [i, j] 增加 val（可以是负数）*/
+    public void increment(int i, int j, int val) {
+        diff[i] += val;
+        if (j + 1 < diff.length) {
+            diff[j + 1] -= val;
         }
     }
 

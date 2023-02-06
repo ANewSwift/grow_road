@@ -44,8 +44,10 @@ public class CorpFlightBookings {
 
     public int[] corpFlightBookings(int[][] bookings, int n) {
         int[] nums = new int[n];
-        Difference difference = new Difference(nums);
-        difference.inc(bookings);
-        return difference.getRes(nums);
+        Difference df = new Difference(nums);
+        for (int[] booking : bookings) {
+            df.increment(booking[0] - 1,booking[1] - 1,booking[2]);
+        }
+        return df.getRes(nums);
     }
 }

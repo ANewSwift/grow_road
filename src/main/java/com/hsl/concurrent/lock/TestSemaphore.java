@@ -7,9 +7,11 @@ public class TestSemaphore {
         Semaphore s = new Semaphore(1, true);
         new Thread(()->{
             try {
+                System.out.println("t1 start");
                 s.acquire();
-                Thread.sleep(1000);
-                System.out.println("do something end...");
+                System.out.println("t1 get success");
+                Thread.sleep(3000);
+                System.out.println("t1 do something end...");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
@@ -19,9 +21,11 @@ public class TestSemaphore {
 
         new Thread(()->{
             try {
+                System.out.println("t1 start");
                 s.acquire();
+                System.out.println("t1 get success");
                 Thread.sleep(1000);
-                System.out.println("do something end...");
+                System.out.println("t2 do something end...");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {

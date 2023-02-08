@@ -1,4 +1,4 @@
-package com.hsl.concurrent.nolock;
+package com.hsl.concurrent.lock;
 
 import java.util.ArrayList;
 import java.util.List;

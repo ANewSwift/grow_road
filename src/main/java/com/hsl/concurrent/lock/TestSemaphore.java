@@ -17,20 +17,20 @@ public class TestSemaphore {
             } finally {
                 s.release();
             }
-        }).start();
+        },"t1").start();
 
         new Thread(()->{
             try {
-                System.out.println("t1 start");
+                System.out.println("t2 start");
                 s.acquire();
-                System.out.println("t1 get success");
-                Thread.sleep(1000);
+                System.out.println("t2 get success");
+                Thread.sleep(3000);
                 System.out.println("t2 do something end...");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 s.release();
             }
-        }).start();
+        }, "t2").start();
     }
 }

@@ -13,6 +13,23 @@ public class TestReentrantLock {
 //        main.testTryLock();
 //        main.testLockInterruptibly();
         main.testFair();
+//        ReentrantLock lock = new ReentrantLock();
+//        new Thread(() -> {
+//            lock.lock();
+//            try {
+//                TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            lock.unlock();
+//        },"t1").start();
+//        try {
+//            TimeUnit.SECONDS.sleep(1);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+//        lock.lock();
+//        lock.unlock();
     }
 
     /**

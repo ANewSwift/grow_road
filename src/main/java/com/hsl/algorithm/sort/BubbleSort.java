@@ -1,33 +1,16 @@
 package com.hsl.algorithm.sort;
 
+/**
+ * 冒泡排序
+ */
 public class BubbleSort {
     public static void main(String[] args) {
         BubbleSort bubbleSort = new BubbleSort();
-        int[] ints = bubbleSort.insertSort(new int[]{3, 5, 4, 1, 2, 6});
+        int[] ints = new int[]{3, 5, 4, 1, 2, 6};
+        bubbleSort.bubbleSort1(ints);
         for (int i : ints) {
             System.out.println(i);
         }
-    }
-
-    /**
-     * 插入排序
-     * 1、假定遍历过的数列已有序，拿每个元素去找其已遍历有序数列的相应位置
-     * 2、依次向后挪动元素，然后把该元素放到相应位置。
-     * 3、接着遍历下个元素，执行以上1、2两步，直到遍历结束
-     */
-    public int[] insertSort(int[] a) {
-        for (int i = 0; i < a.length; i++) {
-            int t = a[i];
-            int j = i - 1;
-            while (j >= 0 && t < a[j]) {
-                a[j+1] = a[j];
-                j--;
-            }
-            if (j != i-1) {
-                a[j+1] = t;
-            }
-        }
-        return a;
     }
 
     /**
@@ -53,5 +36,29 @@ public class BubbleSort {
             }
         }
         return a;
+    }
+
+    /**
+     * 复习
+     */
+    public void bubbleSort1(int[] a) {
+        // N = arr.length
+        // 外循环控制排序次数，总共排N-1次
+        // 内循环进行冒泡操作（相邻元素比大小交换），终止条件：j < N-i
+        for (int i = 0; i < a.length - 1; i++) {
+            // flag代表是否进行过交换，无交换发生代表全部有序
+            boolean flag = false;
+            for (int j = 0; j < a.length - 1 - i; j++) {
+                if (a[j] > a[j+1]) {
+                    int tmp = a[j+1];
+                    a[j+1] = a[j];
+                    a[j] = tmp;
+                    flag = true;
+                }
+            }
+            if (!flag) {
+                break;
+            }
+        }
     }
 }

@@ -14,20 +14,43 @@ public class QuickSort {
         QuickSort ins = new QuickSort();
         ins.quickSort(arr,0,arr.length-1);
         System.out.println("");
-        Arrays.stream(arr).forEach(System.out::print);
+        Arrays.stream(arr).forEach(System.out::println);
     }
 
-    private void quickSort(int[] arr, int start, int end) {
+    private void quickSort(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int pivot = this.partition(arr, left, right);
+        this.quickSort(arr, left, pivot - 1);
+        this.quickSort(arr, pivot + 1, right);
+    }
+
+    private int partition(int[] arr, int left, int right) {
+        int pivot = right;
+        int needChange = left;
+        for (int i = left; i < right; i++) {
+            if (arr[i] < arr[pivot]) {
+                this.swap(arr, i, needChange);
+                needChange++;
+            }
+        }
+        this.swap(arr, needChange, pivot);
+        return needChange;
+    }
+
+
+    private void quickSort2(int[] arr, int start, int end) {
         // 给定范围只要一项，不需排序
         if (start == end) {
             return;
         }
-        int pivot = partition(arr, start, end);
+        int pivot = partition2(arr, start, end);
         if (pivot > start) {
-            quickSort(arr, start, pivot-1);
+            quickSort2(arr, start, pivot-1);
         }
         if (pivot < end) {
-            quickSort(arr, pivot+1, end);
+            quickSort2(arr, pivot+1, end);
         }
     }
 
@@ -40,7 +63,7 @@ public class QuickSort {
      * @param end 结束下标
      * @return pivot
      */
-    private int partition(int[] arr, int start, int end) {
+    private int partition2(int[] arr, int start, int end) {
         // small 为所有小于pivot的下一个
         int small = start;
         for (int i = start; i < end; i++) {

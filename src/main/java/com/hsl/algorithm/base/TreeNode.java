@@ -2,6 +2,8 @@ package com.hsl.algorithm.base;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class TreeNode {
     public String val;
@@ -161,6 +163,32 @@ public class TreeNode {
         System.out.println(node.val);
     }
 
+    /**
+     * 层序遍历
+     * 左右根
+     */
+    public static void levelRetrieval(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            String str = queue.stream().map(TreeNode::getVal).collect(Collectors.joining(","));
+            System.out.println(str);
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+    }
+
     public static boolean twoTreeEquals(TreeNode left, TreeNode right) {
         if (left == null && right == null) {
             return true;
@@ -171,4 +199,27 @@ public class TreeNode {
         return false;
     }
 
+    public String getVal() {
+        return val;
+    }
+
+    public void setVal(String val) {
+        this.val = val;
+    }
+
+    public TreeNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(TreeNode left) {
+        this.left = left;
+    }
+
+    public TreeNode getRight() {
+        return right;
+    }
+
+    public void setRight(TreeNode right) {
+        this.right = right;
+    }
 }

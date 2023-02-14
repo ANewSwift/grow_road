@@ -3,6 +3,8 @@ package com.hsl.algorithm;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class TreeNode {
     public Integer val;
@@ -162,6 +164,32 @@ public class TreeNode {
         System.out.println(node.val);
     }
 
+    /**
+     * 层序遍历
+     * 左右根
+     */
+    public static void levelRetrieval(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            String str = queue.stream().map(q -> String.valueOf(q.val)).collect(Collectors.joining(","));
+            System.out.println(str);
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+    }
+
     public static boolean twoTreeEquals(TreeNode left, TreeNode right) {
         if (left == null && right == null) {
             return true;
@@ -172,4 +200,12 @@ public class TreeNode {
         return false;
     }
 
+
+    public Integer getVal() {
+        return val;
+    }
+
+    public void setVal(Integer val) {
+        this.val = val;
+    }
 }

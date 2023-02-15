@@ -2,6 +2,9 @@ package com.hsl.algorithm.labuladong.tree;
 
 import com.hsl.algorithm.TreeNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 105. 从前序与中序遍历序列构造二叉树
  *
@@ -25,17 +28,21 @@ import com.hsl.algorithm.TreeNode;
  * preorder 保证 为二叉树的前序遍历序列
  * inorder 保证 为二叉树的中序遍历序列
  */
-public class BuildTree {
+public class PreBuildTree {
 
     public static void main(String[] args) {
-        BuildTree main = new BuildTree();
+        PreBuildTree main = new PreBuildTree();
         TreeNode root1 = main.buildTree(new int[]{3,9,20,15,7}, new int[]{9,3,15,20,7});
         TreeNode.levelRetrieval(root1);
 //        TreeNode root2 = main.buildTree(new int[]{-1}, new int[]{-1});
 //        TreeNode.levelRetrieval(root2);
     }
 
+    Map<Integer,Integer> inMap = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
+        for (int i = 0; i < inorder.length; i++) {
+            inMap.put(inorder[i],i);
+        }
         return this.build(preorder, 0, preorder.length - 1,
                 inorder, 0, inorder.length - 1);
     }
@@ -43,13 +50,7 @@ public class BuildTree {
     private TreeNode build(int[] preorder, int pleft, int pright,
                            int[] inorder, int ileft, int iright) {
         TreeNode root = new TreeNode(preorder[pleft]);
-        int inIdx = ileft;
-        for (int i = ileft; i <= iright; i++) {
-            if (preorder[pleft] == inorder[i]) {
-                inIdx = i;
-                break;
-            }
-        }
+        int inIdx = inMap.get(preorder[pleft]);
         int leftLen = inIdx - ileft;
         int rightLen = iright - inIdx;
         root.left = leftLen == 0 ? null : this.build(preorder, pleft+1, pleft+leftLen,

@@ -52,7 +52,7 @@ public class ConstructMaximumBinaryTree {
         if (left > right) {
             return null;
         }
-        int maxIdx = -1;
+        int maxIdx = 0  ;
         int max = Integer.MIN_VALUE;
         for (int i = left; i <= right; i++) {
             if (nums[i] > max) {

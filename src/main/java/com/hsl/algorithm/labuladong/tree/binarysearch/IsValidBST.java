@@ -41,23 +41,49 @@ public class IsValidBST {
         System.out.println(main.isValidBST(root3) == false);
     }
 
-    boolean isValidBST(TreeNode root) {
-        return isValidBST(root, null, null);
+    /**
+     * 利用二叉树，根节点大于所有左子树，小于所有右子树，递归遍历
+     */
+    public boolean isValidBST(TreeNode root) {
+        return this.traverse(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    /* 限定以 root 为根的子树节点必须满足 max.val > root.val > min.val */
-    boolean isValidBST(TreeNode root, TreeNode min, TreeNode max) {
-        // base case
-        if (root == null) return true;
-        // 若 root.val 不符合 max 和 min 的限制，说明不是合法 BST
-        if (min != null && root.val <= min.val) return false;
-        if (max != null && root.val >= max.val) return false;
-        // 限定左子树的最大值是 root.val，右子树的最小值是 root.val
-        return isValidBST(root.left, min, root)
-                && isValidBST(root.right, root, max);
+    private boolean traverse(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val <= min || root.val >= max) {
+            return false;
+        }
+        return this.traverse(root.left, min, root.val) && this.traverse(root.right, root.val, max);
     }
 
+    long preVal = Long.MIN_VALUE;
+    boolean stop = false;
+    /**
+     * 利用中序遍历有序的特点
+     */
+    public boolean isValidBST1(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (stop) {
+            return false;
+        }
+        this.isValidBST1(root.left);
+        if (root.val <= preVal) {
+            stop = true;
+            return false;
+        } else {
+            preVal = root.val;
+        }
+        this.isValidBST1(root.right);
+        return !stop;
+    }
 
+    /**
+     * 时间复杂度太高
+     */
     public boolean isValidBST2(TreeNode root) {
         if (root == null) {
             return true;
@@ -65,7 +91,7 @@ public class IsValidBST {
         if (!this.gtMaxLeft(root.left, root.val) || !this.ltMinRight(root.right, root.val)) {
             return false;
         }
-        if (!this.isValidBST(root.left) || !this.isValidBST(root.right)) {
+        if (!this.isValidBST2(root.left) || !this.isValidBST2(root.right)) {
             return false;
         }
         return true;
